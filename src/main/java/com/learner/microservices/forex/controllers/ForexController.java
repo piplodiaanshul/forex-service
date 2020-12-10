@@ -20,8 +20,8 @@ public class ForexController {
   @GetMapping("/currency-exchange/from/{from}/to/{to}")
   public ExchangeValue fetchExchangeValue(@PathVariable String from, @PathVariable String to) {
     ExchangeValue exchangeValue = exchangeValueRepository.findByFromAndTo(from, to);
-    String localPort = environmentService.getLocalServerPort();
-    exchangeValue.setPort(Integer.parseInt(localPort));
+    int localPort = environmentService.getLocalServerPort();
+    exchangeValue.setPort(localPort);
     return exchangeValue;
   }
 

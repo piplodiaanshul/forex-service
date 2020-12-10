@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnvironmentService {
 
-  private static final String ZERO = "0";
+  private static final int ZERO = 0;
   @Autowired
   private Environment environment;
 
-  public String getLocalServerPort() {
+  public int getLocalServerPort() {
     return Optional.ofNullable(environment)
         .map(environment -> environment.getProperty("local.server.port"))
+        .map(Integer::parseInt)
         .orElse(ZERO);
   }
 }
